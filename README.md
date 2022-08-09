@@ -6,9 +6,11 @@ This repo contains an example of using the Hookdeck CLI in a GitHub action.
 
 ### Hookdeck CLI Token
 
-You must first get a CLI token and set it as a repository or organization secret.
+You must first get a CLI token and set it as a repository or organization
+secret.
 
-Follow the [CLI installation instructions][hookdeck-cli-install] to get a local copy of the CLI and execute the following command:
+Follow the [CLI installation instructions][hookdeck-cli-install] to get a local
+copy of the CLI and execute the following command:
 
 ```shell
 hookdeck login --config hookdeck.toml
@@ -31,7 +33,8 @@ It will look something like this:
   team_name = "Demo"
 ```
 
-Copy the token from the line `api_key` and save it as a [secret in GitHub][github-secret].
+Copy the token from the line `api_key` and save it as a [secret in
+GitHub][github-secret].
 
 For this example it is named `HOOKDECK_CLI_KEY`
 
@@ -45,6 +48,11 @@ rm hookdeck.toml
 
 See the [example workflow][example-workflow] for setting up the action.
 
+You will see that I use a secret for my Hookdeck connection source URL since
+this is a public repository but it is not necessary to make it a secret if your
+repository is private.
+
 [example-workflow]: .github/workflows/example.yml
-[github-secret]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
+[github-secret]:
+    https://docs.github.com/en/actions/security-guides/encrypted-secrets
 [hookdeck-cli-install]: https://hookdeck.com/cli#installation
