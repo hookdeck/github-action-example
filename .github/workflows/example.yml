@@ -1,0 +1,33 @@
+name: HookDeck GitHub Action Demo
+on: [push]
+jobs:
+  Demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Hookdeck v0.5 (linux)
+        run: |
+          curl -L --output hookdeck.tgz https://github.com/hookdeck/hookdeck-cli/releases/download/v0.5/hookdeck_0.5_linux_x86_64.tar.gz
+          tar -xzf hookdeck.tgz
+      
+      - name: Run background webserver
+        run: npx http-echo-server 9090 &
+          
+      
+      - name: Wait for port
+        run: npx wait-port 9090
+
+      - name: Run Hookdeck in background
+        env:
+          HOOKDECK_CLI_KEY: ${{ secrets.HOOKDECK_CLI_KEY }}
+        run: ./hookdeck listen 9090 demo-source &
+
+      - name: Test Hookdeck connection
+        env:
+          HOOKDECK_SOURCE_URL: ${{ secrets.HOOKDECK_SOURCE_URL }}
+        run: >
+          curl -H "content-type: application/json"
+          -d '{"testing": "github action"}'
+          ${HOOKDECK_SOURCE_URL}
+
+      - name: Wait for streams to finish
+        run: sleep 10
