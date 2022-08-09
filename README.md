@@ -43,7 +43,7 @@ rm hookdeck.toml
 
 ## Create the action
 
-See the [example workflow] for setting up the action.
+See the [example workflow][example-workflow] for setting up the action.
 
 [example-workflow]: .github/workflows/example.yml
 [github-secret]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
