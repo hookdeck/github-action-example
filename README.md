@@ -43,23 +43,8 @@ rm hookdeck.toml
 
 ## Create the action
 
-Add a step to install the Hookdeck CLI (assumes Ubuntu runner):
+See the [example workflow] for setting up the action.
 
-```shell
-TODO
-```
-
-Add a step to run the CLI in the background
-
-```shell
-hookdeck listen <address> <source-name>
-```
-
-For example, to forward requests for my source named `action-demo` to port 9090:
-
-```shell
-hookdeck listen 9090 action-demo
-```
-
+[example-workflow]: .github/workflows/example.yml
 [github-secret]: https://docs.github.com/en/actions/security-guides/encrypted-secrets
 [hookdeck-cli-install]: https://hookdeck.com/cli#installation

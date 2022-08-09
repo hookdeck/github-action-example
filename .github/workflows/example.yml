@@ -10,7 +10,7 @@ jobs:
           tar -xzf hookdeck.tgz
       
       - name: Run background webserver
-        run: npx http-echo-server 9090 &
+        run: npx http-echo-server 9090 | tee output &
           
       
       - name: Wait for port
@@ -19,7 +19,7 @@ jobs:
       - name: Run Hookdeck in background
         env:
           HOOKDECK_CLI_KEY: ${{ secrets.HOOKDECK_CLI_KEY }}
-        run: ./hookdeck listen 9090 demo-source &
+        run: ./hookdeck listen 9090 demo-source | tee output &
 
       - name: Test Hookdeck connection
         env:
@@ -30,4 +30,6 @@ jobs:
           ${HOOKDECK_SOURCE_URL}
 
       - name: Wait for streams to finish
-        run: sleep 10
+        run: |
+          sleep 10
+          cat output
